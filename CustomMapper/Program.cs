@@ -19,9 +19,9 @@ namespace CustomMapper
             };
             CardModel card = new CardModel()
             {
-                id = 1,
+                id = 2312321,
                 name = "ben",
-                cost = 3,
+                cost = 9999,
                 Note = "none",
                 sampleModel = sampleModel,
                 cardType = CardType.原始,
@@ -31,7 +31,11 @@ namespace CustomMapper
                      new numberModel(){a=2 },
                      new numberModel(){a=3 },
                 },
-                array = new int[3] { 1, 2, 3 }
+                array = new int[3] { 99, 88, 77 },
+                sets = new HashSet<SampleModel>()
+                {
+                      sampleModel
+                }
             };
 
             //CardViewModel viewcard = new CardViewModel()
@@ -42,24 +46,40 @@ namespace CustomMapper
             //    Note = "none"
             //};
             CardViewModel finalResult = Mapper.Map<CardModel, CardViewModel>(card);
-            foreach (var x in finalResult.array)
+            foreach (var x in finalResult.list)
             {
-
-                Console.WriteLine(x);
+                Console.WriteLine(x.a);
             }
-            Array a = new int[5];
-            object obj = Array.CreateInstance(typeof(int), 123);
-            string elementTypeName = obj.GetType().GetElementType().Name;
-            Console.WriteLine(elementTypeName);
+            Console.WriteLine(finalResult.id);
+            Console.WriteLine(finalResult.name);
+            Console.WriteLine(finalResult.cost);
+            Console.WriteLine(finalResult.cardType);
+            Console.WriteLine(finalResult.sampleModel.sample1);
+            Console.WriteLine(finalResult.sampleModel.sample2);
+            foreach (var x in finalResult.sets)
+            {
+                Console.WriteLine(x.sample1);
+                Console.WriteLine(x.sample2);
+            }
+
+
+            //Array a = new int[5];
+            //object obj = Array.CreateInstance(typeof(int), 123);
+            //string elementTypeName = obj.GetType().GetElementType().Name;
+            //Console.WriteLine(elementTypeName);
+
+
             // List<string> list = new List<string>(); => new T<T1,T2,T3>()
             //Console.WriteLine(typeof(List<int>).IsClass);
             //Console.WriteLine(typeof(List<int>).IsGenericType);
 
-            //var typeArgs = typeof(List<int>).GenericTypeArguments; // 拿到我的TypeArguments 為 List<int>
+            //var typeArgs = typeof(List<int>).GenericTypeArguments; // 拿到我的TypeArguments 為 List<int> ; int 
+
+
             //Console.WriteLine(typeArgs);
-            //var listType = typeof(List<>).GetGenericTypeDefinition(); // List<>
-            //Console.WriteLine(listType.Name + "," + listType.FullName);
-            //Console.WriteLine(typeof(List<int>).Name + "," + typeof(List<int>).FullName);
+            /* var listType = typeof(List<>).GetGenericTypeDefinition(); */// List<>
+                                                                           //Console.WriteLine(listType.Name + "," + listType.FullName);
+                                                                           //Console.WriteLine(typeof(List<int>).Name + "," + typeof(List<int>).FullName);
 
             //var newListType = listType.MakeGenericType(typeArgs); // List<int>
             //var obj = Activator.CreateInstance(newListType);
@@ -117,9 +137,5 @@ namespace CustomMapper
             Console.ReadKey();
         }
 
-        static bool First(int x)
-        {
-            return x % 2 == 0;
-        }
     }
 }

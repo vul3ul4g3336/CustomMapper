@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace CustomMapper
 {
-
-    public class CardViewModel
+    internal class CardModel
     {
         public List<numberModel> list { get; set; }
         public int id { get; set; }
@@ -17,9 +16,12 @@ namespace CustomMapper
 
         public string Note { get; set; }
 
-        public string cardType { get; set; }
         public SampleModel sampleModel { get; set; }
 
+        public CardType cardType { get; set; }
+
         public int[] array { get; set; }
+
+        public HashSet<SampleModel> sets { get; set; }
     }
 }

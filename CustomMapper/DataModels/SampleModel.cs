@@ -11,9 +11,9 @@ namespace CustomMapper
         public string sample1 { get; set; }
         public string sample2 { get; set; }
 
-        public void TestGeneric<T2>(T2 data)
-        {
-            Console.WriteLine(sample1 + ":" + sample2 + ":" + data.ToString());
-        }
+        //public void TestGeneric<T2>(T2 data)
+        //{
+        //    Console.WriteLine(sample1 + ":" + sample2 + ":" + data.ToString());
+        //}
     }
 }

@@ -43,17 +43,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CardModel.cs" />
-    <Compile Include="CardType.cs" />
-    <Compile Include="CardViewModel.cs" />
+    <Compile Include="DataModels\CardModel.cs" />
+    <Compile Include="DataModels\CardType.cs" />
+    <Compile Include="DataModels\CardViewModel.cs" />
+    <Compile Include="Mappers\EnumerableMap.cs" />
+    <Compile Include="CastingType.cs" />
     <Compile Include="Mapper.cs" />
-    <Compile Include="numberModel.cs" />
+    <Compile Include="DataModels\numberModel.cs" />
+    <Compile Include="Mappers\ArrayMap.cs" />
+    <Compile Include="Mappers\AMap.cs" />
+    <Compile Include="Mappers\EnumMap.cs" />
+    <Compile Include="Mappers\NormalMap.cs" />
+    <Compile Include="Mappers\RecursiveMap.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SampleModel.cs" />
+    <Compile Include="DataModels\SampleModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
