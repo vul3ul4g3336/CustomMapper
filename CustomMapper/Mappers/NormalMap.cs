@@ -9,10 +9,10 @@ namespace CustomMapper.Mappers
 {
     internal class NormalMap : AMap
     {
-        public override object Map(object source, PropertyInfo propertyInfo)
+        public override object Map(object source, PropertyInfo sourceInfo, PropertyInfo destinationInfo)
         {
-            var value = propertyInfo.GetValue(source);
-            var destination = Convert.ChangeType(value, propertyInfo.PropertyType); //123 = Convert.ToInt32("123")
+            var value = sourceInfo.GetValue(source);
+            var destination = Convert.ChangeType(value, destinationInfo.PropertyType); //123 = Convert.ToInt32("123")
             return destination;
         }
     }

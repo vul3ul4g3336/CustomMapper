@@ -9,10 +9,10 @@ namespace CustomMapper.Mappers
 {
     internal class ArrayMap : AMap
     {
-        public override object Map(object source, PropertyInfo propertyInfo)
+        public override object Map(object source, PropertyInfo sourceInfo, PropertyInfo destinationInfo)
         {
 
-            Array objArray = (Array)propertyInfo.GetValue(source); //int[]
+            Array objArray = (Array)sourceInfo.GetValue(source); //int[]
             if (objArray == null)
                 return null;
             //var arrayLength = int.Parse(objArray.GetType().GetProperties().FirstOrDefault(x => x.Name == "Length").GetValue(objArray).ToString());

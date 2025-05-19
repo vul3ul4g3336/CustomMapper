@@ -11,15 +11,15 @@ namespace CustomMapper.Mappers
 {
     internal class EnumerableMap : AMap
     {
-        public override object Map(object source, PropertyInfo propertyInfo)
+        public override object Map(object source, PropertyInfo sourceInfo, PropertyInfo destinationInfo)
         {
-            var obj = propertyInfo.PropertyType.GenericTypeArguments;
+            var obj = sourceInfo.PropertyType.GenericTypeArguments;
             Type newListType = null;
-            if (propertyInfo.PropertyType.GetGenericTypeDefinition() == typeof(List<>))
+            if (destinationInfo.PropertyType.GetGenericTypeDefinition() == typeof(List<>))
             {
                 newListType = typeof(List<>).MakeGenericType(obj);
             }
-            else if (propertyInfo.PropertyType.GetGenericTypeDefinition() == typeof(HashSet<>))
+            else if (destinationInfo.PropertyType.GetGenericTypeDefinition() == typeof(HashSet<>))
             {
                 newListType = typeof(HashSet<>).MakeGenericType(obj);
             }
@@ -32,13 +32,13 @@ namespace CustomMapper.Mappers
             //{
             //    method.Invoke(newList, new object[] { i });
             //}
-            var list = (IEnumerable)propertyInfo.GetValue(source);
+            var list = (IEnumerable)sourceInfo.GetValue(source);
 
 
             MethodInfo method = newListType.GetMethod("Add");
 
 
-            object destination = Activator.CreateInstance(propertyInfo.PropertyType);
+            //object destination = Activator.CreateInstance(destinationInfo.PropertyType);
             //MethodInfo methodInfo = typeof(RecursiveMap).GetMethod("Map");
 
             MethodInfo centerMap = typeof(Mapper).GetMethod("Map");
@@ -50,7 +50,7 @@ namespace CustomMapper.Mappers
             foreach (var item in list) //[1.2.3.4.5] -> ["1"]
             {
 
-                var type = MethodType.Invoke(null, new object[] { item });
+                var type = MethodType.Invoke(null, new object[] { item, null });
                 method.Invoke(newList, new object[] { type }); ///int
             }
             return newList;

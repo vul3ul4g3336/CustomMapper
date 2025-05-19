@@ -21,6 +21,6 @@ namespace CustomMapper
         public SampleModel sampleModel { get; set; }
 
         public int[] array { get; set; }
-        public HashSet<SampleModel> sets { get; set; }
+        public List<SampleModel> sets { get; set; }
     }
 }

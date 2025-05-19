@@ -9,14 +9,14 @@ namespace CustomMapper.Mappers
 {
     internal class RecursiveMap : AMap
     {
-        public override object Map(object source, PropertyInfo propertyInfo)
+        public override object Map(object source, PropertyInfo sourceInfo, PropertyInfo destinationInfo)
         {
 
             MethodInfo methodInfo = typeof(Mapper).GetMethod("Map");
 
-            var methodType = methodInfo.MakeGenericMethod(propertyInfo.PropertyType, propertyInfo.PropertyType);
+            var methodType = methodInfo.MakeGenericMethod(sourceInfo.PropertyType, destinationInfo.PropertyType);
 
-            object type = methodType.Invoke(null, new object[] { propertyInfo.GetValue(source) });
+            object type = methodType.Invoke(null, new object[] { sourceInfo.GetValue(source), null });
 
             return type;
 
